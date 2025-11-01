@@ -1,6 +1,9 @@
 package TtokTtok.Backend.domain.user;
 
 import TtokTtok.Backend.common.BaseEntity;
+import TtokTtok.Backend.domain.community.entity.Article;
+import TtokTtok.Backend.domain.community.entity.PreNotice;
+import TtokTtok.Backend.domain.community.entity.Reaction;
 import TtokTtok.Backend.domain.complex.AptUnit;
 import TtokTtok.Backend.domain.noise.entity.NoiseLog;
 import jakarta.persistence.*;
@@ -27,10 +30,10 @@ public class User extends BaseEntity {
     private Integer trustIndex;
 
     @OneToMany(mappedBy = "user")
-    private List<TtokTtok.Backend.domain.community.Article> articles;
+    private List<Article> articles;
 
     @OneToMany(mappedBy = "user")
-    private List<TtokTtok.Backend.domain.community.Reaction> reactions;
+    private List<Reaction> reactions;
 
     @OneToMany(mappedBy = "user")
     private List<NoiseLog> noiseLogs;
@@ -42,7 +45,7 @@ public class User extends BaseEntity {
     private List<PointsLog> pointsLogs;
 
     @OneToMany(mappedBy = "writer")
-    private List<TtokTtok.Backend.domain.community.PreNotice> preNotices;
+    private List<PreNotice> preNotices;
 
     @OneToMany(mappedBy = "requester")
     private List<TtokTtok.Backend.domain.knock.KnockRequest> knockRequests;

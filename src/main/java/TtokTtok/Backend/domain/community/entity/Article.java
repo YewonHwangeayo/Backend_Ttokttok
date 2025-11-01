@@ -1,13 +1,16 @@
-package TtokTtok.Backend.domain.community;
+package TtokTtok.Backend.domain.community.entity;
 
 import TtokTtok.Backend.common.BaseEntity;
 import TtokTtok.Backend.domain.user.User;
 import TtokTtok.Backend.common.enums.ArticleCategory;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Where;
+
 import java.util.List;
 
 @Entity
 @Table(name = "ARTICLE")
+@Where(clause = "is_deleted = false")
 public class Article extends BaseEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "article_num")
@@ -34,6 +37,9 @@ public class Article extends BaseEntity {
     @OneToMany(mappedBy = "article")
     private List<Reaction> reactions;
 
+    @Column(name = "is_deleted", nullable = false)
+    private boolean isDeleted = false;
+
     public Long getId() { return id; }
     public User getUser() { return user; }
     public ArticleCategory getCategory() { return category; }
@@ -41,6 +47,7 @@ public class Article extends BaseEntity {
     public String getContent() { return content; }
     public String getHashtag() { return hashtag; }
     public List<Reaction> getReactions() { return reactions; }
+    public boolean isDeleted() { return isDeleted; }
     public void setId(Long id) { this.id = id; }
     public void setUser(User user) { this.user = user; }
     public void setCategory(ArticleCategory category) { this.category = category; }
@@ -48,6 +55,7 @@ public class Article extends BaseEntity {
     public void setContent(String content) { this.content = content; }
     public void setHashtag(String hashtag) { this.hashtag = hashtag; }
     public void setReactions(List<Reaction> reactions) { this.reactions = reactions; }
+    public void setDeleted(boolean deleted) {this.isDeleted = deleted;} //soft_delete 실행
 }
 
 

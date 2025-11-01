@@ -1,4 +1,4 @@
-package TtokTtok.Backend.domain.community;
+package TtokTtok.Backend.domain.community.entity;
 
 import TtokTtok.Backend.common.BaseEntity;
 import TtokTtok.Backend.domain.user.User;
